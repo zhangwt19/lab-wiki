@@ -23,7 +23,7 @@ $ cd /filepath
 It may be helpful to create a symbolic link in your home directory to access the lab share
 ```
 $ cd 
-$ ls -s /dartfs/rc/lab/S/Szhao Zhao-labshare/
+$ ln -s /dartfs/rc/lab/S/Szhao Zhao-labshare/
 ```
 
 ## 3. After configuring files, run the interactive mode
