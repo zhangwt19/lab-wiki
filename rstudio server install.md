@@ -47,4 +47,4 @@ Note if this port is being used, change the port number. and of course you need 
 ssh -N -f -L 8789:localhost:8789 d92495j@polaris.dartmouth.edu
 
 http://localhost:8789
-# log in as d92495j and rstudio123
+# log in as d92495j and password is aaa
