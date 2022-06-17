@@ -19,7 +19,7 @@ uuidgen > $TMPDIR/tmp/rstudio-server/secure-cookie-key
 chmod 600 $TMPDIR/tmp/rstudio-server/secure-cookie-key
 
 # Run the container
-PASSWORD='aaa' PASSWORD='rstudio123' singularity exec \
+PASSWORD='aaa' singularity exec \
 --bind $TMPDIR/var/lib:/var/lib/rstudio-server \
 --bind $TMPDIR/var/run:/var/run/rstudio-server \
 --bind $TMPDIR/tmp:/tmp \
