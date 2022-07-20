@@ -1,4 +1,4 @@
-# Set up rstudio server  
+# Set up RStudio server  
 
 This tutorial will help you to set up rstudio server. With rstudio server, you will use the R installed on the server and have access to all the files on the server. (I recommended you use `conda` to manage your environment and install your own R with `conda`).
 
@@ -48,3 +48,74 @@ ssh -N -f -L 8789:localhost:8789 d92495j@polaris.dartmouth.edu
 
 http://localhost:8789
 # log in as d92495j and password is aaa
+```
+
+# Set up RStudio server using Conda environment
+* open up a terminal window, log in **Polaris**
+
+make a directory within the home directory
+```
+$ mkdir singularity_imgs
+```
+print working diretory
+```
+$ pwd 
+```
+```
+/dartfs-hpc/rc/home/k/f******/singularity_images
+```
+
+* open another terminal window, log in **Discovery7**
+```
+ssh f*****@discovery7.hpcc.dartmouth.edu
+```
+If prompt asks **‘Are you sure you want to continue connecting (yes/no/[fingerprint])?**
+
+Type 
+```
+> yes
+```
+
+Copy the rstudio.simg file from scratch space to your newly made directory
+```
+$ cp /scratch/rstudio/rstudio.simg /dartfs-hpc/rc/home/k/f******/singularity_images
+```
+
+Go back to the **Polaris** terminal window, type
+```
+singularity exec \
+--bind /dartfs-hpc/rc/home/k/f******/.conda/envs/r_env \
+--bind $(pwd)  /dartfs-hpc/rc/home/k/f******/singularity_images/rstudio.simg rserver \
+--www-address=127.0.0.1 \
+--www-port **** \
+--rsession-which-r=/dartfs-hpc/rc/home/k/f******/.conda/envs/r_env/bin/R \
+--rsession-ld-library-path=/dartfs-hpc/rc/home/k/f******/.conda/envs/r_env/lib \
+--server-user $USER
+```
+Be sure to change the working directory paths to your own and change the port number!
+
+* open the third terminal window, type
+```
+ % ssh -N -f -L ****:localhost:**** f******@polaris.dartmouth.edu
+```
+then type your password
+
+* open up a browser, type
+```
+localhost:****
+```
+You are now able to use your Rstudio server within a conda environment.
+ 
+* On your RStudio Server console, type
+```
+.libPaths("/dartfs-hpc/rc/home/k/f******/.conda/envs/r_env/lib")
+```
+then type this to check and see you’re connected to the correct path.
+```
+.libPaths()
+```
+* **Remember, try to install packages using terminal**
+```
+$ conda activate ‘your env’
+```
+**Try not to install through Rstudio server, Rstudio server is a bit strange when it comes to installing packages.**
