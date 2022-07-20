@@ -51,7 +51,7 @@ http://localhost:8789
 ```
 
 # Set up RStudio server using Conda environment
-* open up a terminal window, log in **Polaris**
+## 1. open up a terminal window, log in **Polaris**
 
 make a directory within the home directory
 ```
@@ -65,7 +65,7 @@ $ pwd
 /dartfs-hpc/rc/home/k/f******/singularity_images
 ```
 
-* open another terminal window, log in **Discovery7**
+## 2. open another terminal window, log in **Discovery7**
 ```
 ssh f*****@discovery7.hpcc.dartmouth.edu
 ```
@@ -81,7 +81,7 @@ Copy the rstudio.simg file from scratch space to your newly made directory
 $ cp /scratch/rstudio/rstudio.simg /dartfs-hpc/rc/home/k/f******/singularity_images
 ```
 
-Go back to the **Polaris** terminal window, type
+## 3. Go back to the **Polaris** terminal window
 ```
 singularity exec \
 --bind /dartfs-hpc/rc/home/k/f******/.conda/envs/r_env \
@@ -94,19 +94,19 @@ singularity exec \
 ```
 Be sure to change the working directory paths to your own and change the port number!
 
-* open the third terminal window, type
+## 4. open the third terminal window
 ```
  % ssh -N -f -L ****:localhost:**** f******@polaris.dartmouth.edu
 ```
 then type your password
 
-* open up a browser, type
+## 5. open up a browser
 ```
 localhost:****
 ```
 You are now able to use your Rstudio server within a conda environment.
  
-* On your RStudio Server console, type
+## 6. On your RStudio Server console
 ```
 .libPaths("/dartfs-hpc/rc/home/k/f******/.conda/envs/r_env/lib")
 ```
